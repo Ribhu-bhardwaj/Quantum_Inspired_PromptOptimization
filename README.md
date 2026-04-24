@@ -138,24 +138,8 @@ This makes the system significantly more cost-effective for resource-constrained
 
 </div>
 
-The system consists of **five core modules** that form a closed evolutionary loop:
+The system consists of **five core modules** that form a closed evolutionary loop
 
-```mermaid
-graph TD
-    A["🔮 Quantum Sampler<br/>(Qiskit RY Circuit)"] -->|"11-bit strings"| B["🧬 Decoder<br/>(Bitstring → Chromosome)"]
-    B -->|"Gene dictionary"| C["📝 Prompt Builder<br/>(Chromosome → Prompt)"]
-    C -->|"Structured prompt"| D["🤖 Evaluator<br/>(Gemini API)"]
-    D -->|"Fitness scores"| E["🏆 Selection & θ Update"]
-    E -->|"Updated rotation angles"| A
-
-    style A fill:#6929C4,stroke:#333,color:#fff
-    style B fill:#1192e8,stroke:#333,color:#fff
-    style C fill:#009d9a,stroke:#333,color:#fff
-    style D fill:#fa4d56,stroke:#333,color:#fff
-    style E fill:#f1c21b,stroke:#333,color:#000
-```
-
----
 
 ## 🔍 Pipeline Deep-Dive
 
@@ -376,17 +360,7 @@ pip install numpy qiskit qiskit-aer google-genai datasets
 $env:GEMINI_API_KEY = "your-api-key-here"
 ```
 
-**Windows (Command Prompt):**
-```cmd
-set GEMINI_API_KEY=your-api-key-here
-```
 
-**Linux / macOS:**
-```bash
-export GEMINI_API_KEY="your-api-key-here"
-```
-
-> **💡 Tip:** For persistent configuration, add the export to your shell profile (`.bashrc`, `.zshrc`, or PowerShell `$PROFILE`).
 
 ### Step 3 — Run the Optimization
 
@@ -582,13 +556,13 @@ This prioritizes accuracy first, then penalizes over-prediction, then under-pred
 
 | Limitation | Detail |
 |:-----------|:-------|
-| **Small dataset** | Only 10/10/20 train/val/test split (vs. 50/50/200 in the paper) |
-| **2 generations** | Paper recommends 10–25 generations for convergence |
-| **Single evaluation** | Each prompt is tested on only 2 validation samples |
+| **Small dataset** | Only 10/10/20 train/val/test split (vs. 50/50/200 in the paper)          |
+| **2 generations** | Paper recommends 10–25 generations for convergence                       |
+| **Single evaluation** | Each prompt is tested on only 2 validation samples                   |
 | **No APO / OPRO** | This version uses quantum sampling only — no LLM-based prompt generators |
-| **Single dataset** | Only ETHOS multilabel; paper tests MMLU-Pro and GPQA as well |
-| **No crossover** | No recombination of elite bitstrings between generations |
-| **Free-tier LLM** | Gemini free tier has rate limits affecting throughput |
+| **Single dataset** | Only ETHOS multilabel; paper tests MMLU-Pro and GPQA as well            |
+| **No crossover** | No recombination of elite bitstrings between generations                  |
+| **Free-tier LLM** | Gemini free tier has rate limits affecting throughput                    |
 
 ### Roadmap for Extension
 
