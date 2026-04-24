@@ -1,6 +1,6 @@
 import numpy as np
 from qiskit import QuantumCircuit
-
+from qiskit_aer import AerSimulator
 
 N_QUBITS = 11
 
